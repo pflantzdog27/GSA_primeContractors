@@ -1,0 +1,108 @@
+@import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc2/css/bootstrap-glyphicons.css");
+
+/***  Box Shadows  ***/
+//***********************************************
+@mixin box-shadow($dimensions, $color) {
+  -webkit-box-shadow: $dimensions $color;
+  -moz-box-shadow:    $dimensions $color;
+  box-shadow:         $dimensions $color;
+}
+
+/***  Transitions  ***/
+//***********************************************
+@mixin transition($property, $time) {
+  -o-transition: $property $time ease;
+  -ms-transition: $property $time ease;
+  -moz-transition: $property $time ease;
+  -webkit-transition: $property $time ease;
+  transition: $property $time ease;
+}
+
+/***  Scale  ***/
+//***********************************************
+@mixin scale($x,$y){
+  -webkit-transform:  scale($x,$y);
+  -moz-transform:  scale($x,$y);
+  -o-transform:  scale($x,$y);
+  -ms-transform:  scale($x,$y);
+  transform:  scale($x,$y);
+}
+
+/***  Radius  ***/
+//***********************************************
+@mixin border-radius($radius){
+  -webkit-border-radius:  $radius;
+  -moz-border-radius:  $radius;
+  border-radius:  $radius;
+}
+
+body {
+  overflow-x: hidden;
+}
+.container {
+  position: relative;
+}
+header {
+  border-bottom: 1px solid #555;
+}
+
+.gridStyle {
+  border: 1px solid rgb(212,212,212);
+  width: 100%;
+  height: 600px;
+}
+
+#sidebar {
+  margin-top: 20px;
+}
+#results {
+  display: none;
+}
+
+#load-display {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  top: 50%;
+  left: 50%;
+  margin: -110px 0 0 -110px;
+  background: url(../images/loader.GIF) no-repeat 0 0;
+}
+// ANIMATIONS
+.slide-container {
+  position: relative;
+  .slide {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .ng-enter,.ng-leave {
+    @include transition(all,1500ms)
+  }
+  .ng-enter {
+    left: 100%;
+  }
+  .ng-enter-active {
+    left: 0;
+  }
+  .slide.ng-leave {
+    //left: -200%;
+  }
+  .slide.ng-leave-active {
+    left: -200%;
+  }
+}
+
+
+
+// MEDIA QUERIES
+@media(min-width:768px){ /* small */
+
+}
+@media(min-width:992px){ /* medium */
+
+}
+@media(min-width:1200px){ /* large */
+
+}

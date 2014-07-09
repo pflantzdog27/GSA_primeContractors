@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Subcontracts Sandbox </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/all.css">
+    <script src="js/modernizr-2.6.2.min.js"></script>
+</head>
+<body ng-app="subcontractorsApp">
+    <div class="container">
+        <div class="row">
+            <div id="sidebar" class="col-md-4">
+                <h4>The GSA Subcontracting Directory list large prime contractors who, by law, are required to establish plans and goals for subcontracting with small business firms.</h4>
+                <h3><a class="btn" href="#/results">Click here to search within the app</a></h3>
+
+                <div class="well">
+                    <h3>Known Issues:</h3>
+                    <ol>
+                        <li>search is case sensitive </li>
+                        <li>Google geocoder for location search
+                            <ul>
+                                <li>currently commented out</li>
+                                <li>need to resolve case sensitivity issues first</li>
+                                <li>currently only searching US</li>
+                                <li>need to remove the trailing USA from any results - this will allow result to match field (which doesn't currently show USA)</li>
+                            </ul></li>
+                    </ol>
+                </div>
+            </div>
+            <!-- VIEWS-->
+            <div class="slide-container col-md-8">
+                <div ng-view="" class="slide"> </div>
+            </div>
+        </div>
+        <!-- end VIEWS -->
+
+    </div>
+
+<!--
+<p>You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]       <!--[if lt IE 7]>   -->
+<!-- In production use:
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+-->
+<script src="js/jquery-2.0.0.min.js"></script>
+<script src="js/angular.min.js"></script>
+<script src="js/angular-animate.1.2.16.min.js"></script>
+<script src="js/ui-bootstrap-tpls-0.11.0.min.js"></script>
+<script src="js/angular-route.js"></script>
+<script src="js/app.js"></script>
+<script src="js/services.js"></script>
+<script src="js/controllers.js"></script>
+<script src="js/routers.js"></script>
+<script src="js/directives.js"></script>
+<script src="js/custom.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,44 @@
+<div id="load-display"></div>
+<div id="results">
+    <!-- search stuff -->
+    <h2>Search <b>{{(contracts | filter:search).length}}</b> Prime Contractors</h2>
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label class="sr-only" for="keyword">Search</label>
+            <input class="col-sm-12 form-control" type="text" ng-model="query" id="keyword" placeholder="Company name, NAICS Code, P/S Description">
+        </div>
+        <div class="form-group col-md-6">
+            <label class="sr-only" for="location">Location</label>
+            <input class="col-sm-12 form-control" id="location" type="text" ng-model="location" placeholder="City, State or Zip Code" typeahead="address for address in getLocation($viewValue)" typeahead-loading="loadingLocations">
+        </div>
+    </div>
+    <!-- end search stuff -->
+    <h3>Results</h3>
+    <div ng-repeat="contract in contracts | filter:search | limitTo:totalDisplayed">
+        <div class="well">
+            <header>
+                <h3>{{contract.contractor}}</h3>
+                <address><b>Company Address</b>: {{contract.street}}, {{contract.city}}, {{contract.state}} {{contract.zip}} </address>
+            </header>
+            <div class="row">
+                <ul class="list-unstyled col-md-6">
+                    <li><b>P/S Description</b>:{{contract.description}}</li>
+                    <li><b>PIID</b>: {{contract.piid}}</li>
+                    <li><b>NAICS Code</b>: {{contract.naics_code}}</li>
+                    <li><b>NAICS Description</b>: {{contract.naics_description}}</li>
+                    <li><b>Product or Service Code:</b> {{contract.product_code}}</li>
+                    <li><b>Vendor Phone</b>: {{contract.phone}}</li>
+                </ul>
+                <ul class="list-unstyled col-md-6">
+                    <li><b>Performance Place</b>: {{contract.performance_city}}, {{contract.performance_state}} {{contract.performance_zip}}</li>
+                    <li><b>Date Signed</b>: {{contract.date_signed}}</li>
+                    <li><b>Effective Date</b>: {{contract.effective_date}}</li>
+                    <li><b>Est. Completion</b>: {{contract.completion_date}}</li>
+                    <li><b>Action Obligation</b>: {{contract.action_obligation}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <button type="button" class="col-md-8 pull-right btn btn-primary btn-lg btn-block" ng-click="loadMore()">Load 20
+        more</button>
+</div>
