@@ -34,15 +34,15 @@
             <div data-ng-repeat="contract in contracts | filter : search | limitTo : totalDisplayed">
                 <div class="well">
                     <header>
-                        <h3>{{contract.contractor}}</h3>
-                        <address><b>Company Address</b>: {{contract.street}}, {{contract.city}}, {{contract.state}} {{contract.zip}} </address>
-                        <small class="geoCode-lunch">{{contract.googleLocation}} {{contract.googleLocation_zip}}</small>
+                        <h3 data-ng-bind-html="contract.contractor | highlight: query"></h3>
+                        <address><b>Company Address</b>: {{contract.street}}, <span data-ng-bind-html="contract.googleLocation_zip | highlight: location"></span></address>
+                        <small class="geoCode-lunch">{{contract.googleLocation}}</small>
                     </header>
                     <div class="row">
                         <ul class="list-unstyled col-md-6">
-                            <li><b >P/S Description</b>:<span data-ng-bind-html="contract.description"></span></li>
+                            <li><b >P/S Description</b>: <span data-ng-bind-html="contract.description | highlight: query"></span></li>
                             <li><b>PIID</b>: {{contract.piid}}</li>
-                            <li><b>NAICS Code</b>: {{contract.naics_code}}</li>
+                            <li><b>NAICS Code</b>: <span data-ng-bind-html="contract.naics_code | highlight: query"></span></li>
                             <li><b>NAICS Description</b>: {{contract.naics_description}}</li>
                             <li><b>Product or Service Code:</b> {{contract.product_code}}</li>
                             <li><b>Vendor Phone</b>: {{contract.phone}}</li>
@@ -57,6 +57,7 @@
                     </div>
                 </div>
             </div>
+
             <button type="button" class="col-md-8 pull-right btn btn-primary btn-lg btn-block" data-ng-click="loadMore()">Load More</button>
         </div>
     </div>
@@ -84,6 +85,7 @@
 <script src="js/controllers.js"></script>
 <script src="js/routers.js"></script>
 <script src="js/directives.js"></script>
+<script src="js/filters.js"></script>
 <script src="js/custom.js"></script>
 </body>
 </html>

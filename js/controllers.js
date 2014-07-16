@@ -14,7 +14,7 @@ angular.module('subcontractorsApp.controllers', [])
                  $scope.contracts = [];
 
                 //SEARCH
-                $scope.search='';
+                $scope.search= '';
                 if($scope.query != undefined) {
                     $scope.search = function (contractor) {
                         $scope.query = $scope.query.toUpperCase();
@@ -47,9 +47,9 @@ angular.module('subcontractorsApp.controllers', [])
                          var descriptionContract = contract.content;
                          var frontCutDescrip = descriptionContract.slice(3);
                          var finalDescription = frontCutDescrip.slice(0,-5);
-                         var metaLocation = contract.custom_fields.vendor_city[0] +', ' + contract.custom_fields.vendor_state[0]+', USA';
                          var convertedState = convert_state(contract.custom_fields.vendor_state[0],'abbrev');
-                         var metaCityState = contract.custom_fields.vendor_city[0] +', ' + convertedState +' '+ shortZip +', USA';
+                         var metaLocation = contract.custom_fields.vendor_city[0] +', ' + convertedState+', USA';
+                         var metaCityState = contract.custom_fields.vendor_city[0] +', ' + contract.custom_fields.vendor_state[0] +' '+ shortZip;
                          $scope.contracts.push({
                              contractor: contract.title,
                              description: finalDescription,
@@ -113,9 +113,10 @@ angular.module('subcontractorsApp.controllers', [])
                 });
                 return returnthis;
             }
-         };
-         // GEOCODER
-         $scope.getLocation = function(val) {
+        }; // close getData function
+
+        // GEOCODER
+        $scope.getLocation = function(val) {
             return $http.get('http://maps.googleapis.com/maps/api/geocode/json', {
                 params: {
                  address: val,
@@ -126,11 +127,17 @@ angular.module('subcontractorsApp.controllers', [])
             }).then(function(res){
                  var addresses = [];
                  angular.forEach(res.data.results, function(item){
-                    addresses.push(item.formatted_address);
+                     var string = item.formatted_address;
+                     console.log(string)
+                     if (string.toLowerCase().indexOf("usa") >= 0){
+                         addresses.push(string.slice(0,-5));
+                     } else {
+                         addresses.push(string);
+                     }
                  });
                  return addresses;
             });
-         };
+        };
 
         //LOAD MORE
         $scope.totalDisplayed = 20;
