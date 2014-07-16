@@ -1,6 +1,29 @@
 angular.module('subcontractorsApp.services',[])
     .factory('subcontractorsAPIservice',function($http) {
-        var subcontractorsAPI = [];
+
+
+        var promise;
+        var myService = {
+            async: function() {
+                if ( !promise ) {
+                    // $http returns a promise, which has a then function, which also returns a promise
+                    promise = $http.jsonp('http://oagov.com/smartAmerica/?json=get_recent_posts&count=-1&callback=JSON_CALLBACK').then(function (response) {
+                        // The then function here is an opportunity to modify the response
+                        //console.log(response);
+                        // The return value gets picked up by the then in the controller.
+                        return response.data;
+                    });
+                }
+                // Return the promise to the controller
+                return promise;
+            }
+        };
+        return myService;
+
+
+
+
+        /*var subcontractorsAPI = [];
         var contracts = $http.jsonp('http://oagov.com/smartAmerica/?json=get_recent_posts&count=-1&callback=JSON_CALLBACK');
         contracts.success(function(data) {
             $('#load-display').fadeOut(600, function() {
@@ -31,7 +54,7 @@ angular.module('subcontractorsApp.services',[])
                     street : contract.custom_fields.street[0],
                     city : contract.custom_fields.vendor_city[0],
                     state : contract.custom_fields.vendor_state[0],
-                    zip : shortZip+'-'+extendedZip,
+                    zip : shortZip,
                     phone : '('+areaCode+')'+firstThree+'-'+lastFour,
                     performance_city : contract.custom_fields.principal_performance_city[0],
                     performance_state : contract.custom_fields.principal_performance_state[0],
@@ -48,6 +71,7 @@ angular.module('subcontractorsApp.services',[])
             return subcontractorsAPI;
         };
         return factory;
+        */
     })
 
 

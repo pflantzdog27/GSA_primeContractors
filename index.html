@@ -12,34 +12,59 @@
     <link rel="stylesheet" href="css/all.css">
     <script src="js/modernizr-2.6.2.min.js"></script>
 </head>
-<body ng-app="subcontractorsApp">
-    <div class="container">
-        <div class="row">
-            <div id="sidebar" class="col-md-4">
-                <h4>The GSA Subcontracting Directory list large prime contractors who, by law, are required to establish plans and goals for subcontracting with small business firms.</h4>
-                <h3><a class="btn" href="#/results">Click here to search within the app</a></h3>
+<body data-ng-app="subcontractorsApp">
+    <div class="container" data-ng-controller="resultsController">
+        <div id="search" class="search-widget">
+            <h2>Search Prime Contractors:</h2>
+            <div class="form-group">
+                <label class="sr-only" for="keyword">Search</label>
+                <input class="col-sm-12 form-control" value="" type="text" id="keyword" data-ng-model="query" placeholder="Company name, NAICS Code, P/S Description">
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="location">Location</label>
+                <input class="col-sm-12 form-control" value="" id="location" type="text" data-ng-model="location" placeholder="City, State or Zip Code" data-typeahead="address for address in getLocation($viewValue)"
+                       data-typeahead-loading="loadingLocations">
+            </div>
+            <button data-ng-click="getData()" class="btn-block btn btn-primary">Search</button>
+        </div>
 
+        <div id="results">
+            <h3>Your search returned <b>{{(contracts | filter:search).length}}</b> results:</h3>
+            <!--<h5>Filter by: <button>some filter</button></h5>-->
+            <div data-ng-repeat="contract in contracts | filter : search | limitTo : totalDisplayed">
                 <div class="well">
-                    <h3>Known Issues:</h3>
-                    <ol>
-                        <li>search is case sensitive </li>
-                        <li>Google geocoder for location search
-                            <ul>
-                                <li>currently commented out</li>
-                                <li>need to resolve case sensitivity issues first</li>
-                                <li>currently only searching US</li>
-                                <li>need to remove the trailing USA from any results - this will allow result to match field (which doesn't currently show USA)</li>
-                            </ul></li>
-                    </ol>
+                    <header>
+                        <h3>{{contract.contractor}}</h3>
+                        <address><b>Company Address</b>: {{contract.street}}, {{contract.city}}, {{contract.state}} {{contract.zip}} </address>
+                        <small class="geoCode-lunch">{{contract.googleLocation}} {{contract.googleLocation_zip}}</small>
+                    </header>
+                    <div class="row">
+                        <ul class="list-unstyled col-md-6">
+                            <li><b >P/S Description</b>:<span data-ng-bind-html="contract.description"></span></li>
+                            <li><b>PIID</b>: {{contract.piid}}</li>
+                            <li><b>NAICS Code</b>: {{contract.naics_code}}</li>
+                            <li><b>NAICS Description</b>: {{contract.naics_description}}</li>
+                            <li><b>Product or Service Code:</b> {{contract.product_code}}</li>
+                            <li><b>Vendor Phone</b>: {{contract.phone}}</li>
+                        </ul>
+                        <ul class="list-unstyled col-md-6">
+                            <li><b>Performance Place</b>: {{contract.performance_city}}, {{contract.performance_state}} {{contract.performance_zip}}</li>
+                            <li><b>Date Signed</b>: {{contract.date_signed}}</li>
+                            <li><b>Effective Date</b>: {{contract.effective_date}}</li>
+                            <li><b>Est. Completion</b>: {{contract.completion_date}}</li>
+                            <li><b>Action Obligation</b>: {{contract.action_obligation}}</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-            <!-- VIEWS-->
-            <div class="slide-container col-md-8">
-                <div ng-view="" class="slide"> </div>
-            </div>
+            <button type="button" class="col-md-8 pull-right btn btn-primary btn-lg btn-block" data-ng-click="loadMore()">Load More</button>
         </div>
-        <!-- end VIEWS -->
-
+    </div>
+    <div id="issue-tracker">
+        <h3>Known Issues:</h3>
+        <ol>
+            <li>Only returning 600 of more than 1200 results</li>
+        </ol>
     </div>
 
 <!--
@@ -53,6 +78,7 @@
 <script src="js/angular-animate.1.2.16.min.js"></script>
 <script src="js/ui-bootstrap-tpls-0.11.0.min.js"></script>
 <script src="js/angular-route.js"></script>
+<script src="js/angular-sanitize.min.js"></script>
 <script src="js/app.js"></script>
 <script src="js/services.js"></script>
 <script src="js/controllers.js"></script>

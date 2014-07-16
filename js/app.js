@@ -1,4 +1,4 @@
 
-angular.module('subcontractorsApp', [ 'subcontractorsApp.controllers', 'subcontractorsApp.services', 'subcontractorsApp.directives','subcontractorsApp.routers','ui.bootstrap']);
+angular.module('subcontractorsApp', [ 'subcontractorsApp.controllers', 'subcontractorsApp.services', 'subcontractorsApp.directives','subcontractorsApp.routers','ui.bootstrap','ngSanitize']);
 
 
