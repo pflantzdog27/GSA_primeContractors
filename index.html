@@ -16,21 +16,23 @@
     <div class="container" data-ng-controller="resultsController">
         <div id="search" class="search-widget">
             <h2>Search Prime Contractors:</h2>
-            <div class="form-group">
-                <label class="sr-only" for="keyword">Search</label>
-                <input class="col-sm-12 form-control" value="" type="text" id="keyword" data-ng-model="query" placeholder="Company name, NAICS Code, P/S Description">
-            </div>
-            <div class="form-group">
-                <label class="sr-only" for="location">Location</label>
-                <input class="col-sm-12 form-control" value="" id="location" type="text" data-ng-model="location" placeholder="City, State or Zip Code" data-typeahead="address for address in getLocation($viewValue)"
-                       data-typeahead-loading="loadingLocations">
-            </div>
-            <button data-ng-click="getData()" class="btn-block btn btn-primary">Search</button>
+            <form>
+                <div class="form-group">
+                    <label class="sr-only" for="keyword">Search</label>
+                    <input class="col-sm-12 form-control" value="" type="text" id="keyword" data-ng-model="query" placeholder="Company name, NAICS Code, P/S Description">
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="location">Location</label>
+                    <input class="col-sm-12 form-control" value="" id="location" type="text" data-ng-model="location" placeholder="City, State or Zip Code" data-typeahead="address for address in getLocation($viewValue)"
+                           data-typeahead-loading="loadingLocations">
+                </div>
+                <input type="submit" value="Search" data-ng-click="getData()" class="btn-block btn btn-primary">
+            </form>
         </div>
 
         <div id="results">
             <h3>Your search returned <b>{{(contracts | filter:search).length}}</b> results:</h3>
-            <!--<h5>Filter by: <button>some filter</button></h5>-->
+            <h5>Filter by: <button>some filter</button></h5>
             <div data-ng-repeat="contract in contracts | filter : search | limitTo : totalDisplayed">
                 <div class="well">
                     <header>
@@ -57,14 +59,26 @@
                     </div>
                 </div>
             </div>
-
-            <button type="button" class="col-md-8 pull-right btn btn-primary btn-lg btn-block" data-ng-click="loadMore()">Load More</button>
+            <div data-ng-show="(contracts | filter:search).length == 0">
+                <h4 class="alert-warning">Your search did not return any results</h4>
+                <h4>Suggestions:</h4>
+                <ul>
+                    <li>Make sure all words are spelled correctly or numbers are entered properly</li>
+                    <li>Use a different search term</li>
+                    <li>Contact <a href="mailto:somedude@gsa.gov">somedude@gsa.gov</a></li>
+                </ul>
+            </div>
+            <button data-ng-show="(contracts | filter:search).length > 20 && (contracts | filter:search).length >= totalDisplayed" type="button" class="col-md-8 pull-right btn btn-primary btn-lg btn-block" data-ng-click="loadMore()">Load
+                More</button>
         </div>
     </div>
     <div id="issue-tracker">
         <h3>Known Issues:</h3>
         <ol>
             <li>Only returning 600 of more than 1200 results</li>
+            <li>after results are displayed - typeahead for location breaks</li>
+            <li>only one of two input fields can be used at a single time</li>
+            <li>click ENTER to search doesn't work (need to click button)</li>
         </ol>
     </div>
 
