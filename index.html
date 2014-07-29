@@ -8,55 +8,212 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Subcontracts Sandbox </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/jquery-ui.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/all.css">
     <script src="js/modernizr-2.6.2.min.js"></script>
 </head>
 <body data-ng-app="subcontractorsApp">
-    <div class="container" data-ng-controller="resultsController">
-        <div id="search" class="search-widget">
-            <h2>Search Prime Contractors:</h2>
+<div class="container" data-ng-controller="resultsController">
+    <div class="row">
+        <div id="search" class="col-md-3">
             <form>
                 <div class="form-group">
-                    <label class="sr-only" for="keyword">Search</label>
-                    <input class="col-sm-12 form-control" value="" type="text" id="keyword" data-ng-model="query" placeholder="Company name, NAICS Code, P/S Description">
+                    <h3>Company</h3>
+                    <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer fermentum massa eu risus laoreet facilisis. Integer porttitor euismod purus, in facilisis dui aliquam at.</small>
+                    <label class="sr-only" for="keyword">Search Company</label>
+                    <input class="col-sm-12 form-control" type="text" id="keyword" data-ng-model="search.contractor" placeholder="Company name" autocomplete="off">
                 </div>
                 <div class="form-group">
-                    <label class="sr-only" for="location">Location</label>
-                    <input class="col-sm-12 form-control" value="" id="location" type="text" data-ng-model="location" placeholder="City, State or Zip Code" data-typeahead="address for address in getLocation($viewValue)"
-                           data-typeahead-loading="loadingLocations">
+                    <h3>NAICS Code</h3>
+                    <small>If a user knows the first three digits - wouldn't they know ALL the digits?</small>
+                    <select class="form-control" data-ng-model="search.naics_code">
+                        <option value="" selected="selected"></option>
+                        <option value="334">334</option>
+                        <option value="541">541</option>
+                        <option value="531">531</option>
+                        <option value="493">493</option>
+                        <option value="423">423</option>
+                        <option value="518">518</option>
+                        <option value="443">443</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <h3>Location</h3>
+                    <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer fermentum massa eu risus laoreet facilisis. Integer porttitor euismod purus, in facilisis dui aliquam at.</small>
+                    <select class="form-control" data-ng-model="search.state">
+                        <option value="" selected="selected"></option>
+                        <option value="AL">Alabama</option>
+                        <option value="AK">Alaska</option>
+                        <option value="AZ">Arizona</option>
+                        <option value="AR">Arkansas</option>
+                        <option value="CA">California</option>
+                        <option value="CO">Colorado</option>
+                        <option value="CT">Connecticut</option>
+                        <option value="DE">Delaware</option>
+                        <option value="DC">District Of Columbia</option>
+                        <option value="FL">Florida</option>
+                        <option value="GA">Georgia</option>
+                        <option value="HI">Hawaii</option>
+                        <option value="ID">Idaho</option>
+                        <option value="IL">Illinois</option>
+                        <option value="IN">Indiana</option>
+                        <option value="IA">Iowa</option>
+                        <option value="KS">Kansas</option>
+                        <option value="KY">Kentucky</option>
+                        <option value="LA">Louisiana</option>
+                        <option value="ME">Maine</option>
+                        <option value="MD">Maryland</option>
+                        <option value="MA">Massachusetts</option>
+                        <option value="MI">Michigan</option>
+                        <option value="MN">Minnesota</option>
+                        <option value="MS">Mississippi</option>
+                        <option value="MO">Missouri</option>
+                        <option value="MT">Montana</option>
+                        <option value="NE">Nebraska</option>
+                        <option value="NV">Nevada</option>
+                        <option value="NH">New Hampshire</option>
+                        <option value="NJ">New Jersey</option>
+                        <option value="NM">New Mexico</option>
+                        <option value="NY">New York</option>
+                        <option value="NC">North Carolina</option>
+                        <option value="ND">North Dakota</option>
+                        <option value="OH">Ohio</option>
+                        <option value="OK">Oklahoma</option>
+                        <option value="OR">Oregon</option>
+                        <option value="PA">Pennsylvania</option>
+                        <option value="RI">Rhode Island</option>
+                        <option value="SC">South Carolina</option>
+                        <option value="SD">South Dakota</option>
+                        <option value="TN">Tennessee</option>
+                        <option value="TX">Texas</option>
+                        <option value="UT">Utah</option>
+                        <option value="VT">Vermont</option>
+                        <option value="VA">Virginia</option>
+                        <option value="WA">Washington</option>
+                        <option value="WV">West Virginia</option>
+                        <option value="WI">Wisconsin</option>
+                        <option value="WY">Wyoming</option>
+                    </select>
                 </div>
                 <input type="submit" value="Search" data-ng-click="getData()" class="btn-block btn btn-primary">
             </form>
         </div>
+        <div id="info" class="col-md-9">
+            <h1>Using the Subcontracting Directory</h1>
+            <p><strong>Who the GSA Subcontracting Directory is for</strong>: The GSA Subcontracting Directory is published for small business concerns seeking subcontracting opportunities with General Services Administration (GSA)
+                prime contractors.The directory lists large business prime contractors who, by law, are required to establish plans and goals for subcontracting with small business firms.</p>
+            <p><strong>Who's in the directory:</strong></p>
+            <ul>
+                <li>Large prime contractors who have received &nbsp;federal contracts, other than construction, valued at over $650,000</li>
+                <li>Large prime contractors who have received federal contracts for construction valued at over $1.5 million</li>
+            </ul>
+            <p><strong>How to use the Subcontracting Directory</strong>: Eligible GSA contractors are listed alphabetically by name within each of the eleven GSA regions. Each listing contains:</p>
+            <ul>
+                <li>Company's name and address</li>
+                <li>Place of performance</li>
+                <li>Product/service code</li>
+                <li>NAICS code</li>
+                <li>Date signed</li>
+                <li>Action obligation</li>
+                <li>Vendor phone</li>
+                <li>PIID (contract number)</li>
+                <li>P/S Description</li>
+                <li>NAICS description</li>
+                <li>Effective date</li>
+                <li>Estimated completion date</li>
+            </ul>
+            <p>Small businesses are encouraged to contact prime contractors directly for subcontracting opportunities.</p>
+            <p><strong>Regional assistance: </strong>Looking beyond the directory? The eleven regional <a href="http://www.gsa.gov/portal/staffDirectory/topic/37@@">GSA Small Business Centers</a> offer more information regarding these opportunities.</p>
+            <p>If you want insight into what GSA expects from prime contractors when crafting a subcontracting agreement, review GSA's template <a href="/portal/getMediaData?mediaId=189127">model subcontracting plan</a> (<a href="/portal/getMediaData?mediaId=189123">Section 508 compliant version</a>), which it offers to prime contractors to help them frame their objectives.</p>
+            <p>The shortcut to this page is www.gsa.gov/subdirectory.</p>
+        </div>
 
-        <div id="results">
-            <h3>Your search returned <b>{{(contracts | filter:search).length}}</b> results:</h3>
-            <h5>Filter by: <button>some filter</button></h5>
-            <div data-ng-repeat="contract in contracts | filter : search | limitTo : totalDisplayed">
-                <div class="well">
-                    <header>
-                        <h3 data-ng-bind-html="contract.contractor | highlight: query"></h3>
-                        <address><b>Company Address</b>: {{contract.street}}, <span data-ng-bind-html="contract.googleLocation_zip | highlight: location"></span></address>
-                        <small class="geoCode-lunch">{{contract.googleLocation}}</small>
-                    </header>
+        <div id="results" class="col-md-9">
+            <div class="clearfix">
+                <h3 class="pull-left">Your search returned <b>{{(contracts | filter:search).length }}</b> results:</h3>
+                <button id="export-option" class="btn btn-danger pull-right" data-ng-show="(contracts | filter:search).length > 0" href="#" data-ng-click="exportData()">Export to xls</button>
+            </div>
+            <div id="table-test" style="display:none">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Contractor</th>
+                        <th>Phone</th>
+                        <th>Company State</th>
+                        <th>Performance City</th>
+                        <th>Performance State</th>
+                        <th>Performance Zip</th>
+                        <th>NAICS Code</th>
+                        <th>P/S Description</th>
+                        <th>PIID</th>
+                        <th>NAICS Description</th>
+                        <th>Product Code</th>
+                        <th>Street Address</th>
+                        <th>City</th>
+                        <th>Zip</th>
+                        <th>Date Signed</th>
+                        <th>Effective Date</th>
+                        <th>Completion Date</th>
+                        <th>Action Obligation</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="contract in contracts | filter: search ">
+                        <td>{{contract.contractor}}</td>
+                        <td>{{contract.phone}}</td>
+                        <td>{{contract.state}}</td>
+                        <td>{{contract.performance_city}}</td>
+                        <td>{{contract.performance_state}}</td>
+                        <td>{{contract.performance_zip}}</td>
+                        <td>{{contract.naics_code}}</td>
+                        <td>{{contract.description}}</td>
+                        <td>{{contract.piid}}</td>
+                        <td>{{contract.naics_description}}</td>
+                        <td>{{contract.product_code}}</td>
+                        <td>{{contract.street}}</td>
+                        <td>{{contract.city}}</td>
+                        <td>{{contract.zip}}</td>
+                        <td>{{contract.date_signed}}</td>
+                        <td>{{contract.effective_date}}</td>
+                        <td>{{contract.completion_date}}</td>
+                        <td>{{contract.action_obligation}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- repeater -->
+            <div class="result" data-ng-repeat="contract in contracts | filter : search | limitTo : totalDisplayed ">
+                <div class="well result">
                     <div class="row">
-                        <ul class="list-unstyled col-md-6">
-                            <li><b >P/S Description</b>: <span data-ng-bind-html="contract.description | highlight: query"></span></li>
-                            <li><b>PIID</b>: {{contract.piid}}</li>
-                            <li><b>NAICS Code</b>: <span data-ng-bind-html="contract.naics_code | highlight: query"></span></li>
-                            <li><b>NAICS Description</b>: {{contract.naics_description}}</li>
-                            <li><b>Product or Service Code:</b> {{contract.product_code}}</li>
-                            <li><b>Vendor Phone</b>: {{contract.phone}}</li>
-                        </ul>
-                        <ul class="list-unstyled col-md-6">
-                            <li><b>Performance Place</b>: {{contract.performance_city}}, {{contract.performance_state}} {{contract.performance_zip}}</li>
-                            <li><b>Date Signed</b>: {{contract.date_signed}}</li>
-                            <li><b>Effective Date</b>: {{contract.effective_date}}</li>
-                            <li><b>Est. Completion</b>: {{contract.completion_date}}</li>
-                            <li><b>Action Obligation</b>: {{contract.action_obligation}}</li>
-                        </ul>
+                        <div class="vcard col-md-6">
+                            <h4 class="fn"><a class="url" href="#" data-ng-bind-html="contract.contractor | highlight: search.contractor"></a></h4>
+                            <p class="adr">
+                                <span class="street-address">{{contract.street}}</span><br>
+                                <span class="locality" data-ng-bind-html="contract.city | highlight: search.city"></span>, <span class="region" data-ng-bind-html="contract.state | highlight: search.state"></span> <span class="postal-code" data-ng-bind-html="contract.zip | highlight: search.zip"></span><br>
+                                <span data-ng-if="contract.phone != undefined">{{contract.phone}}</span>
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="list-unstyled">
+                                <li><b>P/S Description</b>: <span data-ng-bind-html="contract.description | highlight: query"></span></li>
+                                <li><b>NAICS Code</b>: <span data-ng-bind-html="contract.naics_code | highlight: search.naics_code"></span></li>
+                                <li><b>Performance Place</b>: {{contract.performance_city}}, {{contract.performance_state}} {{contract.performance_zip}}</li>
+                                <li><b>Effective Date</b>: {{contract.effective_date}}</li>
+                                <li><b>Est. Completion</b>: {{contract.completion_date}}</li>
+                                <li><b>Action Obligation</b>: {{contract.action_obligation}}</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-12" data-ng-show="showDetails">
+                            <ul class="list-unstyled">
+                                <li><b>PIID</b>: {{contract.piid}}</li>
+                                <li><b>NAICS Description</b>: {{contract.naics_description}}</li>
+                                <li><b>Product or Service Code:</b> {{contract.product_code}}</li>
+                                <li><b>Date Signed</b>: {{contract.date_signed}}</li>
+                            </ul>
+                        </div>
                     </div>
+                    <a href="#" class="popup popup-icon" data-ng-click="showDetails = ! showDetails"><span class="glyphicon glyphicon-chevron-up" data-ng-class="{ 'glyphicon-chevron-down': ! showDetails }"></span></a>
                 </div>
             </div>
             <div data-ng-show="(contracts | filter:search).length == 0">
@@ -68,19 +225,22 @@
                     <li>Contact <a href="mailto:somedude@gsa.gov">somedude@gsa.gov</a></li>
                 </ul>
             </div>
-            <button data-ng-show="(contracts | filter:search).length > 20 && (contracts | filter:search).length >= totalDisplayed" type="button" class="col-md-8 pull-right btn btn-primary btn-lg btn-block" data-ng-click="loadMore()">Load
-                More</button>
+            <button data-ng-show="(contracts | filter:search).length > 20 && (contracts | filter:search).length >= totalDisplayed" type="button" class="col-md-8 pull-right btn btn-primary btn-lg btn-block" data-ng-click="loadMore()">Load More</button>
         </div>
     </div>
-    <div id="issue-tracker">
-        <h3>Known Issues:</h3>
-        <ol>
-            <li>Only returning 600 of more than 1200 results</li>
-            <li>after results are displayed - typeahead for location breaks</li>
-            <li>only one of two input fields can be used at a single time</li>
-            <li>click ENTER to search doesn't work (need to click button)</li>
-        </ol>
-    </div>
+</div>
+
+<!--<div id="issue-tracker">
+    <h3>Known Issues:</h3>
+    <ol>
+        <li>Only returning 600 of more than 1200 results</li>
+        <li>filters results number is not correct when chaining - this effects display of no results message and load more options</li>
+        <li>google location suggestions are too broad - should only be city, state or zip NOT places</li>
+        <li>after results, deleting one input field causes mayhem (when two have been selected)</li>
+        <li>Export to xml</li>
+
+    </ol>
+</div>-->
 
 <!--
 <p>You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -89,18 +249,32 @@
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
 -->
 <script src="js/jquery-2.0.0.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
 <script src="js/angular.min.js"></script>
 <script src="js/angular-animate.1.2.16.min.js"></script>
 <script src="js/ui-bootstrap-tpls-0.11.0.min.js"></script>
 <script src="js/angular-route.js"></script>
 <script src="js/angular-sanitize.min.js"></script>
+<script src="js/fileSaver.js"></script>
 <script src="js/app.js"></script>
 <script src="js/services.js"></script>
 <script src="js/controllers.js"></script>
 <script src="js/routers.js"></script>
 <script src="js/directives.js"></script>
 <script src="js/filters.js"></script>
+<script src="js/slider.js"></script>
 <script src="js/custom.js"></script>
+
+<!-- resources
+<div class="form-group">
+    <label class="sr-only" for="location">Location</label>
+    <input class="col-sm-12 form-control" id="location" type="text" data-ng-model="location" placeholder="City, State or Zip Code" data-typeahead="address for address in getLocation($viewValue)"
+     data-typeahead-loading="loadingLocations" autocomplete="off">
+</div>
+
+!! end resources -->
 </body>
 </html>
+
+
 

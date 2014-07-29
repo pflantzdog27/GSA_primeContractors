@@ -26,12 +26,9 @@ angular.module('subcontractorsApp.services',[])
         /*var subcontractorsAPI = [];
         var contracts = $http.jsonp('http://oagov.com/smartAmerica/?json=get_recent_posts&count=-1&callback=JSON_CALLBACK');
         contracts.success(function(data) {
-            $('#load-display').fadeOut(600, function() {
-                $('#results').fadeIn(1);
-            });
             $.each(data.posts, function(i, contract) {
                 // manipulating results
-                var zipCode = contract.custom_fields.vendor_zip[0];
+                var state = location.custom_fields.vendor_zip[0];
                 var extendedZip = zipCode.substr(zipCode.length - 4);
                 var shortZip = zipCode.substr(0, 5);
                 var zipCodeB = contract.custom_fields.principal_performance_zip[0];

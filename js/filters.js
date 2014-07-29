@@ -7,4 +7,5 @@ angular.module('subcontractorsApp.filters', ['ngSanitize'])
                 return text.replace(new RegExp(filter, 'gi'), '<span class="match">$&</span>');
             };
         };
-    });
+    })
+
