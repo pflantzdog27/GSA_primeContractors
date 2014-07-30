@@ -41,7 +41,7 @@
                 <div class="form-group">
                     <h3>Location</h3>
                     <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer fermentum massa eu risus laoreet facilisis. Integer porttitor euismod purus, in facilisis dui aliquam at.</small>
-                    <select class="form-control" data-ng-model="search.state">
+                    <select class="form-control" data-ng-model="search.performance_state">
                         <option value="" selected="selected"></option>
                         <option value="AL">Alabama</option>
                         <option value="AK">Alaska</option>
@@ -96,7 +96,7 @@
                         <option value="WY">Wyoming</option>
                     </select>
                 </div>
-                <input type="submit" value="Search" data-ng-click="getData()" class="btn-block btn btn-primary">
+                <button data-ng-click="getData()" class="btn-block btn btn-primary">Search</button>
             </form>
         </div>
         <div id="info" class="col-md-9">
@@ -190,7 +190,7 @@
                             <h4 class="fn"><a class="url" href="#" data-ng-bind-html="contract.contractor | highlight: search.contractor"></a></h4>
                             <p class="adr">
                                 <span class="street-address">{{contract.street}}</span><br>
-                                <span class="locality" data-ng-bind-html="contract.city | highlight: search.city"></span>, <span class="region" data-ng-bind-html="contract.state | highlight: search.state"></span> <span class="postal-code" data-ng-bind-html="contract.zip | highlight: search.zip"></span><br>
+                                <span class="locality">{{contract.city}}</span>, <span class="region">{{contract.state}}</span> <span class="postal-code">{{contract.zip}}</span><br>
                                 <span data-ng-if="contract.phone != undefined">{{contract.phone}}</span>
                             </p>
                         </div>
@@ -198,7 +198,8 @@
                             <ul class="list-unstyled">
                                 <li><b>P/S Description</b>: <span data-ng-bind-html="contract.description | highlight: query"></span></li>
                                 <li><b>NAICS Code</b>: <span data-ng-bind-html="contract.naics_code | highlight: search.naics_code"></span></li>
-                                <li><b>Performance Place</b>: {{contract.performance_city}}, {{contract.performance_state}} {{contract.performance_zip}}</li>
+                                <li><b>Performance Place</b>: {{contract.performance_city}},
+                                    <span data-ng-bind-html="contract.performance_state | highlight: search.performance_state"></span> {{contract.performance_zip}}</li>
                                 <li><b>Effective Date</b>: {{contract.effective_date}}</li>
                                 <li><b>Est. Completion</b>: {{contract.completion_date}}</li>
                                 <li><b>Action Obligation</b>: {{contract.action_obligation}}</li>
@@ -213,7 +214,7 @@
                             </ul>
                         </div>
                     </div>
-                    <a href="#" class="popup popup-icon" data-ng-click="showDetails = ! showDetails"><span class="glyphicon glyphicon-chevron-up" data-ng-class="{ 'glyphicon-chevron-down': ! showDetails }"></span></a>
+                    <span data-ng-click="showDetails = ! showDetails" class="open-icon glyphicon glyphicon-chevron-up" data-ng-class="{ 'glyphicon-chevron-down': ! showDetails }"></span>
                 </div>
             </div>
             <div data-ng-show="(contracts | filter:search).length == 0">

@@ -48,19 +48,21 @@ body {
 #load-display {
   padding-bottom: 150px;
   position: absolute;
-  top: 50%;
+  top: 200px;
   left: 50%;
-  margin: -100px 0 0 -100px;
+  margin-left: -100px;
   background: #eaeaea url(../images/loader.gif) no-repeat 50% 95%;
   @include box-shadow(2px 4px 2px 1px, #555);
 }
 
-.popup-icon {
+.open-icon {
   position: absolute;
   right: 10px;
   top: 100%;
   margin-top: -20px;
   height: 50px;
+  cursor: pointer;
+  color: blue;
 }
 
 .result {

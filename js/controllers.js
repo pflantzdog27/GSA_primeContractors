@@ -1,6 +1,6 @@
 angular.module('subcontractorsApp.controllers', [])
     .controller('resultsController',function($scope,$http, subcontractorsAPIservice) {
-        $scope.getData = function() {
+        $scope.getData = function( ) {
             if($scope.search == undefined) {
                 alert('Stop - you didn\'t enter any search terms!');
             } else {
