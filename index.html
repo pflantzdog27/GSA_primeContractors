@@ -15,10 +15,7 @@
 </head>
 <body data-ng-app="subcontractorsApp">
 <div class="container">
-    <section data-ng-controller="OtherController" class="clearfix col-md-9 text-center">
-        <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)"></dir-pagination-controls>
-    </section>
-    <section data-ng-controller="resultsController">
+     <section data-ng-controller="resultsController">
         <div id="info" class="col-md-9">
             <h1>Using the Subcontracting Directory</h1>
             <p><strong>Who the GSA Subcontracting Directory is for</strong>: The GSA Subcontracting Directory is published for small business concerns seeking subcontracting opportunities with General Services Administration (GSA)
@@ -49,7 +46,6 @@
             <p>The shortcut to this page is www.gsa.gov/subdirectory.</p>
             <button data-ng-click="getData()" class="btn-block btn btn-primary">View All Contractors</button>
         </div>
-
         <div id="results" class="col-md-9">
             <div id="search">
                 <form>
@@ -188,7 +184,7 @@
                 </form>
             </div>
             <hr>
-            <div class="clearfix row">
+            <div class="row">
                 <h4 class="col-md-6">Displaying <b>{{(contracts | filter:search).length }}</b> results:</h4>
                 <div class="form-group col-md-3">
                     <small>items per page:</small><input type="number" min="10" max="100" step="10" data-ng-model="pageSize">
@@ -197,6 +193,9 @@
                     <button class="btn btn-danger pull-right" data-ng-show="(contracts | filter:search).length > 0" href="#" data-ng-click="exportData()">Export to xls</button>
                 </div>
             </div>
+            <section class="clearfix col-md-9 text-center">
+                <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)"></dir-pagination-controls>
+            </section>
 
             <div id="csv-export" style="display:none">
                 <table>
@@ -246,6 +245,7 @@
                     </tbody>
                 </table>
             </div>
+            <div class="clearfix"></div>
             <!-- repeater -->
             <div class="result" dir-paginate="contract in contracts | filter : search | itemsPerPage: pageSize">
                 <div class="well result">

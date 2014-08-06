@@ -15,7 +15,7 @@ angular.module('subcontractorsApp.controllers', [])
                 // INITIALIZE THE DATA
                  $scope.makeContractors = function() {
                      // pagination
-                     $scope.pageSize = 10;
+                     $scope.pageSize = 25;
 
                      $scope.contracts = [];
                      $.each(d.posts, function(i, contract) {
@@ -143,13 +143,12 @@ angular.module('subcontractorsApp.controllers', [])
             saveAs(blob, "subContractors.xls");
         };
 
+        $scope.pageChangeHandler = function(num) {
+        };
 
     })//close results controller
 
-    .controller('OtherController',function($scope) {
-        $scope.pageChangeHandler = function(num) {
-        };
-    })
+
 
 
 

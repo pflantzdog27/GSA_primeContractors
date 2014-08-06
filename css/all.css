@@ -39,7 +39,8 @@ body {
   right: 0;
   top: 60%;
   cursor: pointer;
-  color: red; }
+  color: red;
+  padding: 5px; }
 
 .slide-container {
   position: relative; }
