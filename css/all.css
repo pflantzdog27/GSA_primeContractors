@@ -34,8 +34,12 @@ body {
 .result {
   position: relative; }
 
-#export-option {
-  margin-top: 15px; }
+.clear-filter {
+  position: absolute;
+  right: 0;
+  top: 60%;
+  cursor: pointer;
+  color: red; }
 
 .slide-container {
   position: relative; }

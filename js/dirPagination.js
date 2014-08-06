@@ -1,4 +1,20 @@
-angular.module('subcontractorsApp.directives', [])
+/**
+ * dirPagination - AngularJS module for paginating (almost) anything.
+ *
+ *
+ * Credits
+ * =======
+ *
+ * Daniel Tabuenca: https://groups.google.com/d/msg/angular/an9QpzqIYiM/r8v-3W1X5vcJ
+ * for the idea on how to dynamically invoke the ng-repeat directive.
+ *
+ * I borrowed a couple of lines and a few attribute names from the AngularUI Bootstrap project:
+ * https://github.com/angular-ui/bootstrap/blob/master/src/pagination/pagination.js
+ *
+ * Created by Michael on 04/05/14.
+ */
+
+angular.module('myApp', [])
     .directive('dirPaginate', ['$compile', '$parse', '$timeout', 'paginationService', function($compile, $parse, $timeout, paginationService) {
         return  {
             priority: 5000, //High priority means it will execute first
@@ -135,7 +151,7 @@ angular.module('subcontractorsApp.directives', [])
 
         return {
             restrict: 'AE',
-            templateUrl:  'dirPagination.tpl.html',
+            templateUrl:  'partials/dirPagination.tpl.html',
             scope: {
                 maxSize: '=?',
                 onPageChange: '&?'

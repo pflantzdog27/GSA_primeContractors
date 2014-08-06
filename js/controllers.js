@@ -11,12 +11,13 @@ angular.module('subcontractorsApp.controllers', [])
                     $('#results').fadeIn(1);
                 });
 
-                //holds all the contractors
-                 $scope.contracts = [];
 
                 // INITIALIZE THE DATA
-                 init();
-                 function init() {
+                 $scope.makeContractors = function() {
+                     // pagination
+                     $scope.pageSize = 10;
+
+                     $scope.contracts = [];
                      $.each(d.posts, function(i, contract) {
                          // manipulating results
                          var zipCode = contract.custom_fields.vendor_zip[0];
@@ -59,15 +60,42 @@ angular.module('subcontractorsApp.controllers', [])
                          })
                      });
                  }
-            });
+                 $scope.makeContractors();
 
+            }); // close async
         }; // close getData function
 
-        //LOAD MORE
-        $scope.totalDisplayed = 20;
-        $scope.loadMore = function () {
-            $scope.totalDisplayed += 20;
+        // clear filters for select menus
+        $scope.clearNaics = function() {
+            $scope.search.naics_front = undefined;
+            $scope.filterNaics = false;
         };
+        $scope.clearPerformPlace = function() {
+            $scope.search.performance_state = undefined;
+            $scope.filterPerformPlace = false;
+        };
+        $scope.clearCompLoc = function() {
+            $scope.search.state = undefined;
+            $scope.filterCompLoc = false;
+        };
+
+        //hide or show close button
+        $scope.changeNaics = function() {
+            if($scope.search.naics_front != undefined) {
+                $scope.filterNaics = true;
+            };
+        }
+        $scope.changePerformPlace = function() {
+            if($scope.search.performance_state != undefined) {
+                $scope.filterPerformPlace = true;
+            };
+        }
+        $scope.changeCompLoc = function() {
+            if($scope.search.state != undefined) {
+                $scope.filterCompLoc = true;
+            };
+        }
+
 
         // CONVERT STATES
         function convert_state(name, to) {
@@ -117,5 +145,11 @@ angular.module('subcontractorsApp.controllers', [])
 
 
     })//close results controller
+
+    .controller('OtherController',function($scope) {
+        $scope.pageChangeHandler = function(num) {
+        };
+    })
+
 
 
