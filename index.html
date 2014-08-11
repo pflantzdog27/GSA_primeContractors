@@ -50,14 +50,14 @@
             <div id="search">
                 <form>
                     <div class="form-group">
-                        <h3>Company</h3>
+                        <h4>Company</h4>
                         <label class="sr-only" for="keyword">Search Company</label>
                         <input class="col-sm-12 form-control" type="text" id="keyword" data-ng-model="search.contractor" placeholder="All" autocomplete="off">
                         <small>Type any part of a company name to filter the list</small>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-3">
-                            <h3>NAICS Code</h3>
+                            <h4>NAICS Code</h4>
                             <select class="form-control" data-ng-model="search.naics_front" data-ng-change="changeNaics()" data-ng-options="contract.naics_front as contract.naics_front for contract in contracts | unique : 'naics_front'| orderBy :
                             'naics_front'">
                             </select>
@@ -65,7 +65,7 @@
                             <em class="clear-filter" data-ng-show="filterNaics" data-ng-click="clearNaics()">X</em>
                         </div>
                         <div class="form-group col-md-3">
-                            <h3>Place of Performance</h3>
+                            <h4>Place of Performance</h4>
                             <select class="form-control" data-ng-model="search.performance_state" data-ng-change="changePerformPlace()">
                                 <option value="AL">Alabama</option>
                                 <option value="AK">Alaska</option>
@@ -123,7 +123,7 @@
                             <em class="clear-filter" data-ng-show="filterPerformPlace" data-ng-click="clearPerformPlace()">X</em>
                         </div>
                         <div class="form-group col-md-3">
-                            <h3>Company Location</h3>
+                            <h4>Company Location</h4>
                             <select class="form-control" data-ng-model="search.state" data-ng-change="changeCompLoc()">
                                 <option value="AL">Alabama</option>
                                 <option value="AK">Alaska</option>
@@ -180,6 +180,24 @@
                             <small>Select state of company headquarters</small>
                             <em class="clear-filter" data-ng-show="filterCompLoc" data-ng-click="clearCompLoc()">X</em>
                         </div>
+                        <div class="form-group col-md-3">
+                            <h4>Region of Performance</h4>
+                            <select class="form-control" data-ng-model="search.region" data-ng-change="changeRegion()">
+                                <option value="1">New England Region 1</option>
+                                <option value="2">Northeast and Caribbean Region 2</option>
+                                <option value="3">Mid-Atlantic Region 3</option>
+                                <option value="4">Southeast Sunbelt Region 4</option>
+                                <option value="5">Great Lakes Region 5</option>
+                                <option value="6">The Heartland Region 6</option>
+                                <option value="7">Greater Southwest Region 7</option>
+                                <option value="8">Rocky Mountain Region 8</option>
+                                <option value="9">Pacific Rim Region 9</option>
+                                <option value="10">Northwest/Arctic Region 10</option>
+                                <option value="11">National Capital Region 11</option>
+                            </select>
+                            <small>Select GSA Region in which work takes place</small>
+                            <em class="clear-filter" data-ng-show="filterRegion" data-ng-click="clearRegion()">X</em>
+                        </div>
                     </div><!-- end filters -->
                 </form>
             </div>
@@ -187,13 +205,19 @@
             <div class="row">
                 <h4 class="col-md-6">Displaying <b>{{(contracts | filter:search).length }}</b> results:</h4>
                 <div class="form-group col-md-3">
-                    <small>items per page:</small><input type="number" min="10" max="100" step="10" data-ng-model="pageSize">
+                    <small>items per page:</small>
+                    <select data-ng-model="pageSize">
+                        <option value="10">10</option>
+                        <option value="25" selected>25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
                 </div>
                 <div class="col-md-3 pull-right">
                     <button class="btn btn-danger pull-right" data-ng-show="(contracts | filter:search).length > 0" href="#" data-ng-click="exportData()">Export to xls</button>
                 </div>
             </div>
-            <section class="clearfix col-md-9 text-center">
+            <section class="clearfix text-center">
                 <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)"></dir-pagination-controls>
             </section>
 
@@ -271,6 +295,7 @@
                         </div>
                         <div class="col-md-12" data-ng-show="showDetails">
                             <ul class="list-unstyled">
+                                <li><b>Performance Region</b>: {{contract.region}}</li>
                                 <li><b>PIID</b>: {{contract.piid}}</li>
                                 <li><b>NAICS Description</b>: {{contract.naics_description}}</li>
                                 <li><b>Product or Service Code:</b> {{contract.product_code}}</li>
